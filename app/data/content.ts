@@ -4,7 +4,7 @@ export const siteContent = {
 
   hero: {
     headline: "Happy Birthday, Sunshine",
-    subtitle: "Today, the world celebrates you. But every day, I celebrate us.",
+    subtitle: "Today, the world celebrates you. I celebrate you everyday.",
     ctaText: "Tap to Begin 💕",
   },
 
@@ -23,23 +23,28 @@ export const siteContent = {
   photos: [
     {
       src: "/photos/photo1.jpg",
-      caption: "Our first adventure together",
+      caption: "Our first meet-up",
+      size: "square",
     },
     {
       src: "/photos/photo2.jpg",
-      caption: "That magical sunset",
+      caption: "A little effort",
+      size: "landscape",
     },
     {
       src: "/photos/photo3.jpg",
-      caption: "Your beautiful smile",
+      caption: "Your beautiful smile (never visible)",
+      size: "portrait",
     },
     {
       src: "/photos/photo4.jpg",
-      caption: "Dancing in the rain",
+      caption: "Cute one",
+      size: "portrait",
     },
     {
       src: "/photos/photo5.jpg",
-      caption: "My favorite moment with you",
+      caption: "First of many favorite moments with you",
+      size: "landscape",
     },
   ],
 

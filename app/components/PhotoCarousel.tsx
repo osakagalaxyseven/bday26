@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import { siteContent } from "@/app/data/content";
 import { fadeInUp } from "@/app/lib/animations";
+import NextImage from "next/image";
 
 export default function PhotoCarousel() {
   const { photos } = siteContent;
@@ -43,6 +44,18 @@ export default function PhotoCarousel() {
     if (isRightSwipe) handlePrev();
   };
 
+  const getAspectRatioClass = (size?: string) => {
+    switch (size) {
+      case "landscape":
+        return "aspect-[3/4] max-w-60 rotate-270";
+      case "square":
+        return "aspect-square max-w-md";
+      case "portrait":
+      default:
+        return "aspect-[3/4] max-w-60 rotate-90";
+    }
+  };
+
   return (
     <section
       ref={ref}
@@ -71,7 +84,11 @@ export default function PhotoCarousel() {
           onTouchEnd={onTouchEnd}
         >
           {/* Main Image Display */}
-          <div className="relative aspect-[4/3] max-w-lg mx-auto mb-6">
+          <div
+            className={`relative ${getAspectRatioClass(
+              photos[activeIndex].size,
+            )} mx-auto mb-6 transition-all duration-500`}
+          >
             {photos.map((photo, index) => (
               <motion.div
                 key={index}
@@ -85,27 +102,13 @@ export default function PhotoCarousel() {
                 className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl"
               >
                 <div className="relative w-full h-full bg-blush-light">
-                  {/* Placeholder for actual images */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blush-light to-lavender-light">
-                    <div className="text-center">
-                      <Heart className="w-12 h-12 mx-auto mb-2 text-rose-gold fill-rose-gold opacity-50" />
-                      <p className="text-charcoal-light text-sm">
-                        Add your photo to
-                      </p>
-                      <p className="text-charcoal text-xs font-mono mt-1">
-                        public{photo.src}
-                      </p>
-                    </div>
-                  </div>
-                  {/*
-                  <Image
+                  <NextImage
                     src={photo.src}
                     alt={photo.caption}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 512px"
                   />
-                  */}
                 </div>
               </motion.div>
             ))}
